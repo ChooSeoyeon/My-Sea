@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- css & title -->
+    <link rel="stylesheet" href="main.css" />
+    <title>My Ocean</title>
+  </head>
+
+  <body>
+    <!-- 좌측 메뉴 모달창 -->
+    <div class="left-menu">
+      <p>Menu Title</p>
+    </div>
+
+    <!-- 로그인 모달창 -->
+    <div class="black-background">
+      <div class="white-background">
+        <p>Log in</p>
+        <form action="login.php">
+          <div class="form-group">
+            <input
+              type="email"
+              class="form-control"
+              placeholder="Email"
+              id="email"
+            />
+            <p id="email-alert">Please supply a email in the Email field.</p>
+            <p id="email-wrong">Please enter valid email address.</p>
+          </div>
+          <div class="form-group">
+            <input
+              type="password"
+              class="form-control"
+              placeholder="Password"
+              id="psw"
+            />
+            <p id="psw-alert">
+              Please supply a password in the Password field.
+            </p>
+            <p id="psw-wrong">Password must have at least a capital letter.</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Log In</button>
+          <button id="close" type="button" class="btn btn-dark">Close</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- 네비게이션바 -->
+    <div class="nav-menu">
+      <h4 class="large-logo" style="margin: 0">My Ocean</h4>
+      <a>Quotes</a>
+      <a id="nav-sub-button">Photos</a>
+    </div>
+
+    <ul class="nav-sub list-group">
+      <li class="list-group-item">Beach</li>
+      <li class="list-group-item">Underwater</li>
+      <li class="list-group-item">Wave</li>
+    </ul>
+
+    <!-- 대문 -->
+    <div class="jumbotron main-background">
+      <h1 class="display-4">My Ocean</h1>
+      <p class="lead">
+        "We are tied to the ocean. And when we go back to the sea, whether it is
+        to sail or to watch - we are going back from whence we came." John
+        F.Kennedy
+      </p>
+      <hr class="my-4" />
+      <p>
+        Here are many ocean quotes and photos that inspire us, and I hope will
+        inspire you too.
+      </p>
+      <a id="login" class="btn btn-primary btn-lg" href="#" role="button"
+        >Log In</a
+      >
+      <a id="show-menu" class="btn btn-secondary btn-lg" href="#" role="button"
+        >Show Menu</a
+      >
+    </div>
+
+    <!-- 하단 슬라이드 -->
+    <h4 class="my-4 text-center">Best Photos</h4>
+    <div class="slide">
+      <div class="slide-container">
+        <div class="slide-box">
+          <img src="img/best1.jpg" />
+        </div>
+        <div class="slide-box">
+          <img src="img/best2.jpg" />
+        </div>
+        <div class="slide-box">
+          <img src="img/best3.jpg" />
+        </div>
+      </div>
+      <button class="slide-prev btn"><</button>
+      <button class="slide-next btn">></button>
+    </div>
+    <!-- <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button> -->
+
+    <!-- 탭 -->
+    <div class="container mt-5">
+      <ul class="list">
+        <li class="tab-button active">Information</li>
+        <li class="tab-button">Quotes</li>
+        <li class="tab-button">Photos</li>
+      </ul>
+
+      <div class="tab-content show">
+        <p>페이지 정보입니다. Info</p>
+      </div>
+      <div class="tab-content">
+        <p>인용문 설명입니다. Quote</p>
+      </div>
+      <div class="tab-content">
+        <p>사진 설명입니다. Photo</p>
+      </div>
+    </div>
+
+    <script src="tab.js"></script>
+    <!-- 탭 -->
+
+    <!-- Javascript -->
+    <script>
+      // 네비게이션바 스크롤시 변화주기
+      $(window).on("scroll", function () {
+        var 스크롤 = $(window).scrollTop();
+        if (스크롤 > 70) {
+          $(".nav-menu").addClass("nav-black");
+          $(".nav-menu h4").addClass("small-logo");
+        } else {
+          $(".nav-menu").removeClass("nav-black");
+          $(".large-logo").removeClass("small-logo");
+        }
+      });
+
+      // 하단 슬라이드
+      var 지금보이는사진 = 1;
+
+      $(".slide-next").click(function () {
+        if (지금보이는사진 < 3) {
+          $(".slide-container").css(
+            "transform",
+            "translateX(-" + 지금보이는사진 + "00vw)"
+          );
+          지금보이는사진 += 1;
+        }
+      });
+
+      $(".slide-prev").click(function () {
+        if (지금보이는사진 > 1) {
+          $(".slide-container").css(
+            "transform",
+            "translateX(-" + (지금보이는사진 - 2) + "00vw)"
+          );
+          지금보이는사진 -= 1;
+        }
+      });
+
+      // $(".slide-next").click(function () {
+      //   if (지금보이는사진 == 1) {
+      //     $(".slide-container").css("transform", "translateX(-100vw)");
+      //     지금보이는사진 +=1;
+      //   } else if (지금보이는사진 == 2) {
+      //     $(".slide-container").css("transform", "translateX(-200vw)");
+      //     지금보이는사진 +=1;
+      //   }
+      // });
+
+      // $(".slide-prev").click(function () {
+      //   if (지금보이는사진 == 2) {
+      //     $(".slide-container").css("transform", "translateX(0vw)");
+      //     지금보이는사진 -= 1;
+      //   } else if (지금보이는사진 == 3) {
+      //     $(".slide-container").css("transform", "translateX(-100vw)");
+      //     지금보이는사진 -= 1;
+      //   }
+      // });
+
+      // $(".slide-1").click(function () {
+      //   $(".slide-container").css("transform", "translateX(0vw)");
+      // });
+
+      // $(".slide-2").click(function () {
+      //   $(".slide-container").css("transform", "translateX(-100vw)");
+      // });
+
+      // $(".slide-3").click(function () {
+      //   $(".slide-container").css("transform", "translateX(-200vw)");
+      // });
+
+      // 아이디, 비번 미입력 알림창 띄우기
+      var 이메일안내창 = $("#email-alert");
+      var 비번안내창 = $("#psw-alert");
+      var 이메일형식 = $("#email-wrong");
+      var 비번형식 = $("#psw-wrong");
+      $("form").submit(function (e) {
+        // 만약에 지금 이메일 input에 입력된 값이 정규식과 비교했을 때 false인 경우
+        // 폼 전송 막기, 안내창 띄우기
+        var 입력한이메일 = $("#email").val();
+        if (입력한이메일 == "") {
+          e.preventDefault();
+          이메일안내창.show();
+        } else if (/\S+@\S+\.\S+/.test(입력한이메일) == false) {
+          e.preventDefault();
+          이메일안내창.hide();
+          이메일형식.show();
+        } else {
+          이메일안내창.hide();
+          이메일형식.hide();
+        }
+
+        var 입력한비번 = $("#psw").val();
+        if (입력한비번 == "") {
+          e.preventDefault();
+          비번안내창.show();
+        } else if (/[A-Z]+/.test(입력한비번) == false) {
+          e.preventDefault();
+          비번안내창.hide();
+          비번형식.show();
+        } else {
+          비번안내창.hide();
+          비번형식.hide();
+        }
+
+        // if ($("#email").val() == "") {
+        //   e.preventDefault();
+        //   이메일안내창.show();
+        // } else if ($("#psw").val() == "") {
+        //   e.preventDefault();
+        //   $("#psw-alert").show();
+        // }
+      });
+
+      //로그인 모달창 slide down하며 열기
+      $("#login").click(function () {
+        $(".black-background").addClass("slide-down");
+      });
+
+      //로그인 모달창 닫기
+      $("#close").on("click", function () {
+        $(".black-background").removeClass("slide-down");
+      });
+
+      //네비게이션 바 열고 닫기
+      $("#nav-sub-button").click(function () {
+        $(".nav-sub").slideToggle();
+      });
+
+      // 좌측 메뉴 모달창 열기
+      $("#show-menu").click(function () {
+        $(".left-menu").animate({ marginLeft: "0px" });
+      });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- jQuery는 지웠음 -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
