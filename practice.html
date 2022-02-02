@@ -17,7 +17,6 @@
     <button class="btn">버튼btn</button>
     <button class="btn">버튼btn</button>
     <button class="btn">버튼btn</button>
-
     <script>
       /*   
       document.getElementsByClassName("greeting")[0].innerHTML = "안녕";
@@ -45,6 +44,19 @@
         .on("click", function () {
           $(".greeting").eq(0).hide();
         });
+    </script>
+
+    <h4 id="title">상품제목</h4>
+    <p id="text">상품내용</p>
+    <div style="margin-bottom: 500px"></div>
+
+    <script>
+      var 어레이 = ["BMW", 520];
+      var 오브젝트 = { brand: "BMW", model: 520 };
+
+      var 자료 = [{ brand: "BMW" }, { model: 520 }];
+      $("#title").html(자료[0].brand);
+      $("#text").html(자료[1].model);
     </script>
   </body>
 </html>
